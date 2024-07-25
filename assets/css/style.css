@@ -392,11 +392,11 @@ p {
 *************************************************************************/
 
 .navbar-default {
-  background: rgba(0, 0, 0, 0.4);
+  background:rgb(0 0 0);
   border: none;
   width: 100%;
   margin-bottom: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   /* border-bottom: 2px solid rgba(20, 194, 191, 0.976); */
 }
@@ -1975,7 +1975,8 @@ ul.features-list li {
 }
 
 .screenshots-carousel .shot {
-  padding: 4px;
+  padding: 1px;
+  height: 263px;
 }
 
 .screenshots-carousel .shot a.zoom {

@@ -1004,19 +1004,19 @@
               <div class="col-md-8 col-md-offset-2">
                 
                 <!-- form fields -->
-                <form action="assets/php/contact.php.htm" method="post" name="contactform" id="contactform" class="animated out" data-animation="fadeInUp" data-delay="0">
+                <form action="" name="contactform" id="contactform" class="animated out" data-animation="fadeInUp" data-delay="0">
 
                   <fieldset>
                     <div class="form-group">
-                      <input class="form-control br-b" type="text" name="name" id="name" placeholder="Name">
+                      <input required class="form-control br-b" type="text" name="name" id="name" placeholder="Name">
                     </div>
 
                     <div class="form-group">
-                      <input class="form-control br-b" type="email" name="email" id="email" placeholder="Email">
+                      <input required class="form-control br-b" type="email" name="email" id="email" placeholder="Email">
                     </div>
 
                     <div class="form-group">
-                      <textarea class="form-control br-b" name="message" id="message" placeholder="Message..."></textarea>
+                      <textarea required class="form-control br-b" name="message" id="message" placeholder="Message..."></textarea>
                     </div>
                   </fieldset>
                   
@@ -1202,6 +1202,25 @@
       initializeCarousel();
     });
   </script>
+  <script>
+    $("#contactform").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbz1XnyQfL3WT-8gCtPHojaAfmxBK9DFqMzd98v2qcGNuKmlMaNkiYxJg9KT-X3zUa5OEQ/exec",
+            data:$("#contactform").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+</script>
 
 </body>
 </html>
