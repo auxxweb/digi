@@ -3086,6 +3086,10 @@ p.copyright {
   .breadcrumb {
     text-align: center;
   }
+  .screenshots-carousel .shot {
+   
+    height: auto;
+  }
 
 }
 
@@ -3154,6 +3158,9 @@ p.copyright {
   .about-me h4 a {
     margin-bottom: 30px;
   }
+  .screenshots-carousel .shot {
+    height: auto;
+  }
 
 }
 
@@ -3204,12 +3211,18 @@ p.copyright {
   .client img {
     width: 100%!important;
   }
+  .screenshots-carousel .shot {
+    height: auto;
+  }
 
 }
 
 @media screen and (max-width: 480px) {
   .back-to-top {
     visibility: hidden;
+  }
+  .screenshots-carousel .shot {
+    height: auto;
   }
 }
 
