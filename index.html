@@ -1000,6 +1000,12 @@
           </div> <!-- end title-section -->
 
           <div class="form-wrapper">
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p id="alertMessage">This is a custom alert message!</p>
+              </div>
+          </div>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
                 
@@ -1016,13 +1022,20 @@
                     </div>
 
                     <div class="form-group">
+                      <input required class="form-control br-b" type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="phoneNumber">
+                    </div>
+
+                    <div class="form-group">
                       <textarea required class="form-control br-b" name="message" id="message" placeholder="Message..."></textarea>
                     </div>
                   </fieldset>
                   
                   <!-- submit button -->
-                  <div  class="form-group">
+                  <div id="s-btn"  class="form-group">
                     <input type="submit" name="submit" value="Send message" id="submit" class="btn btn-sm btn-dark">
+                  </div> 
+                   <div style="display: none;"  id="loading" class="form-group">
+                    <input disabled type="submit"  value="loading..." id="submit" class="btn btn-sm btn-dark">
                   </div>
 
                   <div id="alert"></div>
@@ -1203,18 +1216,53 @@
     });
   </script>
   <script>
+
+function showCustomAlert(message) {
+      var modal = document.getElementById("myModal");
+      var alertMessage = document.getElementById("alertMessage");
+      var span = document.getElementsByClassName("close")[0];
+
+      alertMessage.textContent = message || "This is a custom alert message!";
+
+      modal.style.display = "block";
+
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+  }
+
+
     $("#contactform").submit((e)=>{
         e.preventDefault()
+        const loading = document.getElementById("loading")
+        const btn = document.getElementById("s-btn")
+        loading.style.display="block"
+        btn.style.display="none"
         $.ajax({
-            url:"https://script.google.com/macros/s/AKfycbz1XnyQfL3WT-8gCtPHojaAfmxBK9DFqMzd98v2qcGNuKmlMaNkiYxJg9KT-X3zUa5OEQ/exec",
+            url:"https://script.google.com/macros/s/AKfycbySzCpLwTX7dBFOx1LwqbibjUYYyUFzEVkZm2gN_W-3Jsbu5CpOHe57ROrJ2k732WGhpw/exec",
             data:$("#contactform").serialize(),
             method:"post",
             success:function (response){
-                alert("Form submitted successfully")
-                window.location.reload()
+              showCustomAlert("Form submitted successfully")
+                // alert("Form submitted successfully")
+                document.getElementById("name").value="";
+                document.getElementById("email").value="";
+                document.getElementById("phoneNumber").value="";
+                document.getElementById("message").value=""
+                 loading.style.display="none"
+        btn.style.display="block"
+                // window.location.reload()
                 //window.location.href="https://google.com"
             },
             error:function (err){
+              loading.style.display="none"
+        btn.style.display="block"
                 alert("Something Error")
 
             }
