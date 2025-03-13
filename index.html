@@ -896,113 +896,208 @@
     </section>
     <!-- End clients-section -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      const sheetID = "YOUR_SHEET_ID"; // Replace with your actual Google Sheet ID
+
+      // Function to fetch data from a specific sheet and insert it into a specific element
+      function fetchSheetData(sheetName, elementId) {
+          const sheetURL = `https://docs.google.com/spreadsheets/d/1TfGmPYuy3ez9ljSageeAH3ySmCfSP8rjgRrIMp7dGZA/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+          fetch(sheetURL)
+          .then(res => res.text())
+          .then(data => {
+              const json = JSON.parse(data.substring(47).slice(0, -2)); // Remove extra Google API characters
+              const rows = json.table.rows;
+              
+              let htmlContent = "";
+              rows.forEach(row => {
+                  const name = row.c[0]?.v || "";
+                  const image = row.c[1]?.v || "";
+                  const description = row.c[2]?.v || "";
+
+                  htmlContent += `
+                     
+
+
+
+
+
+                       <li class="title-price">
+                    <h3>${name}</h3>
+                  </li>
+                  <li class="price-box">
+                      <img src="${image}" style="height: 5rem;"  alt="${name}" />
+                  </li>
+                  <li><p>${description}</p></li>
+                  <li>
+                      <p>${description}</p>
+                  </li>
+                  <li>
+                      <p>${description}e</p>
+                  </li>
+                  <li>
+                      <p>${description}</p>
+                  </li>
+                  <li><p>${description}</p></li>
+                  <li>
+                      <p>${description}</p>
+                  </li>
+                  <li>
+                      <a href="#" class="btn btn-sm btn-dark">Purchase</a>
+                  </li>
+                  `;
+              });
+
+              document.getElementById(elementId).innerHTML = htmlContent;
+          })
+          .catch(err => console.error(`Error fetching ${sheetName}:`, err));
+      }
+
+      // Fetch data from multiple sheets
+      fetchSheetData("Products", "product-list"); // Load Products data
+      // fetchSheetData("Services", "service-list"); // Load Services data
+      // fetchSheetData("About", "about-list"); // Load Products data
+      // fetchSheetData("Projects", "project-list"); // Load Services data
+  </script>
+
+
+
+
+
+
+
     <!-- Prices
     ================================================== -->
     <section>
-      <div id="prices-section" class="pad-sec">
+      <div id="prices-section"  class="pad-sec">
         <div class="container">
           <div class="title-section text-center animated out" data-animation="fadeInUp" data-delay="0">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
-                <h2>Our Prices</h2>
+                <h2>Our Products</h2>
                 <hr>
                 <p>Seamlessly restore client-focused potentialities rather than functional strategic theme areas.</p>
               </div>
             </div> <!-- End row -->
           </div> <!-- end title-section -->
-
-          <div class="row">
-            <div class="col-sm-4">
-              <ul class="price-table animated out" data-animation="fadeInLeft" data-delay="0">
-                  <li class="title-price">
-                    <h3>Basic Pack</h3>
-                  </li>
-                  <li class="price-box">
-                      <p class="price"><span class="currency">$</span>5.99</p>
-                      <p class="months">per month</p>
-                  </li>
-                  <li><p>Full Access</p></li>
-                  <li>
-                      <p>5 Projects</p>
-                  </li>
-                  <li>
-                      <p>5 GB Storage</p>
-                  </li>
-                  <li>
-                      <p>100GB Monthly Bandwidth</p>
-                  </li>
-                  <li><p>Premium Support</p></li>
-                  <li>
-                      <p>Your domain</p>
-                  </li>
-                  <li>
-                      <a href="#" class="btn btn-sm btn-dark">Purchase</a>
-                  </li>
+<!-- xxxxxx -->
+            <div class="col-sm-12"  >
+              <ul id="product-list" class="price-table animated out" data-animation="fadeInLeft" data-delay="0">
+                 
               </ul>
             </div> <!-- end col-sm-4 -->
 
-            <div class="col-sm-4">
-              <ul class="price-table animated out" data-animation="fadeInUp" data-delay="0">
-                  <li class="title-price">
-                    <h3>Basic Pack</h3>
-                  </li>
-                  <li class="price-box">
-                      <p class="price"><span class="currency">$</span>5.99</p>
-                      <p class="months">per month</p>
-                  </li>
-                  <li><p>Full Access</p></li>
-                  <li>
-                      <p>5 Projects</p>
-                  </li>
-                  <li>
-                      <p>5 GB Storage</p>
-                  </li>
-                  <li>
-                      <p>100GB Monthly Bandwidth</p>
-                  </li>
-                  <li><p>Premium Support</p></li>
-                  <li>
-                      <p>Your domain</p>
-                  </li>
-                  <li>
-                      <a href="#" class="btn btn-sm btn-dark">Purchase</a>
-                  </li>
-              </ul>
-            </div> <!-- end col-sm-4 -->
 
-            <div class="col-sm-4">
-              <ul class="price-table animated out" data-animation="fadeInRight" data-delay="0">
-                  <li class="title-price">
-                    <h3>Basic Pack</h3>
-                  </li>
-                  <li class="price-box">
-                      <p class="price"><span class="currency">$</span>5.99</p>
-                      <p class="months">per month</p>
-                  </li>
-                  <li><p>Full Access</p></li>
-                  <li>
-                      <p>5 Projects</p>
-                  </li>
-                  <li>
-                      <p>5 GB Storage</p>
-                  </li>
-                  <li>
-                      <p>100GB Monthly Bandwidth</p>
-                  </li>
-                  <li><p>Premium Support</p></li>
-                  <li>
-                      <p>Your domain</p>
-                  </li>
-                  <li>
-                      <a href="#" class="btn btn-sm btn-dark">Purchase</a>
-                  </li>
-              </ul>
-            </div> <!-- end col-sm-4 -->
-          </div> <!-- end row -->
+
+
+<!-- xxxxxxxx -->
+
+            
+
+          
+
+           
+        
         </div> <!-- end container -->
       </div>
     </section>
     <!-- End prices section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Subscribe-section
     ================================================== -->
